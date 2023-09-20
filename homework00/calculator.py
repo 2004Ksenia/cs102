@@ -10,7 +10,9 @@ def calc(num_1: float, num_2: float, command: str) -> tp.Union[float, str]:
     if command == "*":
         return num_1 * num_2
     if command == "/":
-        return num_1 / num_2
+        if num_2 != 0:
+            return num_1 / num_2
+        return "На 0 делить нельзя"
     if command == "**":
         return num_1**num_2
     else:
@@ -45,8 +47,8 @@ if __name__ == "__main__":
             NUM_1 = float(input("Первое число > "))
             NUM_2 = float(input("Второе число > "))
             print(calc(NUM_1, NUM_2, COMMAND))
-        if COMMAND in ("**2", "sin", "cos", "ln", "log10", "tan"):
+        elif COMMAND in ("**2", "sin", "cos", "ln", "log10", "tan"):
             NUM_1 = float(input("Число > "))
             print(calc_1(NUM_1, COMMAND))
         else:
-            print("Неизвестный оператор", COMMAND)
+            print("Неизвестный оператор:", COMMAND)
