@@ -17,7 +17,7 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     for i in range(len(plaintext)):
         if plaintext[i].isalpha():
             if plaintext[i].isupper():
-                if ord(plaintext[i]) + shift > ord('Z'):
+                if ord(plaintext[i]) + shift > ord("Z"):
                     s = ord("Z") - ord(plaintext[i])
                     shift2 = shift - s
                     b = ord("A") + shift2 - 1
