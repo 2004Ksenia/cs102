@@ -25,21 +25,21 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
                     c = chr(b)
                     ciphertext += c
                 else:
-                    с = ord(plaintext[i]) + shift
+                    a = ord(plaintext[i]) + shift
                     с = chr(a)
-                    ciphertext += с
+                    ciphertext += str(с)
             if plaintext[i].islower():
                 shift = ord(keyword[i].lower()) - ord("a")
                 if ord(plaintext[i]) + shift > ord("z"):
                     s = ord("z") - ord(plaintext[i])
                     shift2 = shift - s
                     b = ord("a") + shift2 - 1
-                    a = chr(b)
-                    ciphertext += a
+                    c = chr(b)
+                    ciphertext += c
                 else:
                     a = ord(plaintext[i]) + shift
                     с = chr(a)
-                    ciphertext += с
+                    ciphertext += str(с)
         else:
             ciphertext += str(plaintext[i])
     return ciphertext
@@ -69,24 +69,24 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
                     s = ord(ciphertext[i]) - ord("A")
                     shift2 = shift - s
                     b = ord("Z") - shift2 + 1
-                    a = chr(b)
-                    plaintext += a
+                    c = chr(b)
+                    plaintext += str(c)
                 else:
                     a = ord(ciphertext[i]) - shift
-                    a = chr(a)
-                    plaintext += a
+                    c = chr(a)
+                    plaintext += str(c)
             if ciphertext[i].islower():
                 shift = ord(keyword[i].lower()) - ord("a")
                 if ord(ciphertext[i]) - shift < ord("a"):
                     s = ord(ciphertext[i]) - ord("a")
                     shift2 = shift - s
                     b = ord("z") - shift2 + 1
-                    a = chr(b)
-                    plaintext += a
+                    c = chr(b)
+                    plaintext += str(c)
                 else:
                     a = ord(ciphertext[i]) - shift
-                    a = chr(a)
-                    plaintext += a
+                    c = chr(a)
+                    plaintext += str(c)
         else:
             plaintext += str(ciphertext[i])
     return plaintext
