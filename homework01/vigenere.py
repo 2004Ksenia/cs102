@@ -9,6 +9,7 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     'LXFOPVEFRNHR'
     """
     ciphertext = ""
+    a = 0
     while len(plaintext) > len(keyword):
         keyword += keyword[a]
         a += 1
@@ -55,6 +56,7 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
     'ATTACKATDAWN'
     """
     plaintext = ""
+    a = 0
     while len(ciphertext) > len(keyword):
         keyword += keyword[a]
         a += 1
