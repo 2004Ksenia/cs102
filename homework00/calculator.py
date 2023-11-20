@@ -52,4 +52,3 @@ if __name__ == "__main__":
             print(calc_1(NUM_1, COMMAND))
         else:
             print("Неизвестный оператор:", COMMAND)
-
