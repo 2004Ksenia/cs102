@@ -11,31 +11,31 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     ''
     """
     ciphertext = ""
-    a = 0
+    new_number = 0
     for i in range(len(plaintext)):
         if plaintext[i].isalpha():
             if plaintext[i].isupper():
                 if ord(plaintext[i]) + shift > ord("Z"):
-                    s = ord("Z") - ord(plaintext[i])
-                    shift2 = shift - s
-                    b = ord("A") + shift2 - 1
-                    c = chr(b)
-                    ciphertext += str(c)
+                    sdvig = ord("Z") - ord(plaintext[i])
+                    shift2 = shift - sdvig
+                    new_letter_number = ord("A") + shift2 - 1
+                    new_letter = chr(new_letter_number)
+                    ciphertext += str(new_letter)
                 else:
-                    a = ord(plaintext[i]) + shift
-                    c = chr(a)
-                    ciphertext += str(c)
+                    new_number = ord(plaintext[i]) + shift
+                    new_letter = chr(new_number)
+                    ciphertext += str(new_letter)
             if plaintext[i].islower():
                 if ord(plaintext[i]) + shift > ord("z"):
-                    s = ord("z") - ord(plaintext[i])
-                    shift2 = shift - s
-                    b = ord("a") + shift2 - 1
-                    c = chr(b)
-                    ciphertext += str(c)
+                    sdvig = ord("z") - ord(plaintext[i])
+                    shift2 = shift - sdvig
+                    new_letter_number = ord("a") + shift2 - 1
+                    new_letter = chr(new_letter_number)
+                    ciphertext += str(new_letter)
                 else:
-                    a = ord(plaintext[i]) + shift
-                    c = chr(a)
-                    ciphertext += str(c)
+                    new_number = ord(plaintext[i]) + shift
+                    new_letter = chr(new_number)
+                    ciphertext += str(new_letter)
         else:
             ciphertext += str(plaintext[i])
     return ciphertext
@@ -54,31 +54,31 @@ def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     ''
     """
     plaintext = ""
-    a = 0
+    new_number = 0
     for i in range(len(ciphertext)):
         if ciphertext[i].isalpha():
             if ciphertext[i].isupper():
                 if ord(ciphertext[i]) - shift < ord("A"):
-                    s = ord(ciphertext[i]) - ord("A")
-                    shift2 = shift - s
-                    b = ord("Z") - shift2 + 1
-                    c = chr(b)
-                    plaintext += str(c)
+                    sdwig = ord(ciphertext[i]) - ord("A")
+                    shift2 = shift - sdwig
+                    new_letter_number = ord("Z") - shift2 + 1
+                    new_letter = chr(new_letter_number)
+                    plaintext += str(new_letter)
                 else:
-                    a = ord(ciphertext[i]) - shift
-                    c = chr(a)
-                    plaintext += str(c)
+                    new_number = ord(ciphertext[i]) - shift
+                    new_letter = chr(new_number)
+                    plaintext += str(new_letter)
             if ciphertext[i].islower():
                 if ord(ciphertext[i]) - shift < ord("a"):
-                    s = ord(ciphertext[i]) - ord("a")
-                    shift2 = shift - s
-                    b = ord("z") - shift2 + 1
-                    c = chr(b)
-                    plaintext += str(c)
+                    sdwig = ord(ciphertext[i]) - ord("a")
+                    shift2 = shift - sdwig
+                    new_letter_number = ord("z") - shift2 + 1
+                    new_letter = chr(new_letter_number)
+                    plaintext += str(new_letter)
                 else:
-                    a = ord(ciphertext[i]) - shift
-                    c = chr(a)
-                    plaintext += str(c)
+                    new_number = ord(ciphertext[i]) - shift
+                    new_letter = chr(new_number)
+                    plaintext += str(new_letter)
         else:
             plaintext += str(ciphertext[i])
     return plaintext
