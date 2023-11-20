@@ -22,12 +22,12 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
                     s = ord("Z") - ord(plaintext[i])
                     shift2 = shift - s
                     b = ord("A") + shift2 - 1
-                    a = chr(b)
-                    ciphertext += a
+                    c = chr(b)
+                    ciphertext += c
                 else:
-                    a = ord(plaintext[i]) + shift
-                    a = chr(a)
-                    ciphertext += a
+                    с = ord(plaintext[i]) + shift
+                    с = chr(a)
+                    ciphertext += с
             if plaintext[i].islower():
                 shift = ord(keyword[i].lower()) - ord("a")
                 if ord(plaintext[i]) + shift > ord("z"):
@@ -38,8 +38,8 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
                     ciphertext += a
                 else:
                     a = ord(plaintext[i]) + shift
-                    a = chr(a)
-                    ciphertext += a
+                    с = chr(a)
+                    ciphertext += с
         else:
             ciphertext += str(plaintext[i])
     return ciphertext
