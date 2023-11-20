@@ -12,7 +12,7 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     a = 0
     s = 0
     b = 0
-    ciphertext = ''
+    ciphertext = ""
     while len(plaintext) > len(keyword):
         keyword += keyword[a]
         a += 1
@@ -20,7 +20,7 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     for i in range(len(plaintext)):
         if plaintext[i].isalpha():
             if plaintext[i].isupper():
-                shift = ord(keyword[i].upper()) - ord('A')
+                shift = ord(keyword[i].upper()) - ord("A")
                 if ord(plaintext[i]) + shift > ord("Z"):
                     s = ord("Z") - ord(plaintext[i])
                     shift2 = shift - s
@@ -32,7 +32,7 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
                     a = chr(a)
                     ciphertext += a
             if plaintext[i].islower():
-                shift = ord(keyword[i].lower()) - ord('a')
+                shift = ord(keyword[i].lower()) - ord("a")
                 if ord(plaintext[i]) + shift > ord("z"):
                     s = ord("z") - ord(plaintext[i])
                     shift2 = shift - s
@@ -62,7 +62,7 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
     a = 0
     s = 0
     b = 0
-    plaintext = ''
+    plaintext = ""
     while len(ciphertext) > len(keyword):
         keyword += keyword[a]
         a += 1
@@ -70,7 +70,7 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
     for i in range(len(ciphertext)):
         if ciphertext[i].isalpha():
             if ciphertext[i].isupper():
-                shift = ord(keyword[i].upper()) - ord('A')
+                shift = ord(keyword[i].upper()) - ord("A")
                 if ord(ciphertext[i]) - shift < ord("A"):
                     s = ord(ciphertext[i]) - ord("A")
                     shift2 = shift - s
@@ -82,7 +82,7 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
                     a = chr(a)
                     plaintext += a
             if ciphertext[i].islower():
-                shift = ord(keyword[i].lower()) - ord('a')
+                shift = ord(keyword[i].lower()) - ord("a")
                 if ord(ciphertext[i]) - shift < ord("a"):
                     s = ord(ciphertext[i]) - ord("a")
                     shift2 = shift - s
