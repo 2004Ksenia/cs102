@@ -9,40 +9,37 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     'LXFOPVEFRNHR'
     """
     ciphertext = ""
-    a = 0
-    s = 0
-    b = 0
-    ciphertext = ""
+    new_number = 0
     while len(plaintext) > len(keyword):
-        keyword += keyword[a]
-        a += 1
+        keyword += keyword[new_number]
+        new_number += 1
 
     for i in range(len(plaintext)):
         if plaintext[i].isalpha():
             if plaintext[i].isupper():
                 shift = ord(keyword[i].upper()) - ord("A")
                 if ord(plaintext[i]) + shift > ord("Z"):
-                    s = ord("Z") - ord(plaintext[i])
-                    shift2 = shift - s
-                    b = ord("A") + shift2 - 1
-                    a = chr(b)
-                    ciphertext += a
+                    sdwig = ord("Z") - ord(plaintext[i])
+                    shift2 = shift - sdwig
+                    new_letter_number = ord("A") + shift2 - 1
+                    new_letter = chr(new_letter_number)
+                    ciphertext += new_letter
                 else:
-                    a = ord(plaintext[i]) + shift
-                    a = chr(a)
-                    ciphertext += a
+                    new_number = ord(plaintext[i]) + shift
+                    new_letter = chr(new_number)
+                    ciphertext += str(new_letter)
             if plaintext[i].islower():
                 shift = ord(keyword[i].lower()) - ord("a")
                 if ord(plaintext[i]) + shift > ord("z"):
-                    s = ord("z") - ord(plaintext[i])
-                    shift2 = shift - s
-                    b = ord("a") + shift2 - 1
-                    a = chr(b)
-                    ciphertext += a
+                    sdwig = ord("z") - ord(plaintext[i])
+                    shift2 = shift - sdwig
+                    new_letter_number = ord("a") + shift2 - 1
+                    new_letter = chr(new_letter_number)
+                    ciphertext += new_letter
                 else:
-                    a = ord(plaintext[i]) + shift
-                    a = chr(a)
-                    ciphertext += a
+                    new_number = ord(plaintext[i]) + shift
+                    new_letter = chr(new_number)
+                    ciphertext += str(new_letter)
         else:
             ciphertext += str(plaintext[i])
     return ciphertext
@@ -59,40 +56,37 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
     'ATTACKATDAWN'
     """
     plaintext = ""
-    a = 0
-    s = 0
-    b = 0
-    plaintext = ""
+    new_number = 0
     while len(ciphertext) > len(keyword):
-        keyword += keyword[a]
-        a += 1
+        keyword += keyword[new_number]
+        new_number += 1
 
     for i in range(len(ciphertext)):
         if ciphertext[i].isalpha():
             if ciphertext[i].isupper():
                 shift = ord(keyword[i].upper()) - ord("A")
                 if ord(ciphertext[i]) - shift < ord("A"):
-                    s = ord(ciphertext[i]) - ord("A")
-                    shift2 = shift - s
-                    b = ord("Z") - shift2 + 1
-                    a = chr(b)
-                    plaintext += a
+                    sdwig = ord(ciphertext[i]) - ord("A")
+                    shift2 = shift - sdwig
+                    new_letter_number = ord("Z") - shift2 + 1
+                    new_letter = chr(new_letter_number)
+                    plaintext += str(new_letter)
                 else:
-                    a = ord(ciphertext[i]) - shift
-                    a = chr(a)
-                    plaintext += a
+                    new_number = ord(ciphertext[i]) - shift
+                    new_letter = chr(new_number)
+                    plaintext += str(new_letter)
             if ciphertext[i].islower():
                 shift = ord(keyword[i].lower()) - ord("a")
                 if ord(ciphertext[i]) - shift < ord("a"):
-                    s = ord(ciphertext[i]) - ord("a")
-                    shift2 = shift - s
-                    b = ord("z") - shift2 + 1
-                    a = chr(b)
-                    plaintext += a
+                    sdwig = ord(ciphertext[i]) - ord("a")
+                    shift2 = shift - sdwig
+                    new_letter_number = ord("z") - shift2 + 1
+                    new_letter = chr(new_letter_number)
+                    plaintext += str(new_letter)
                 else:
-                    a = ord(ciphertext[i]) - shift
-                    a = chr(a)
-                    plaintext += a
+                    new_number = ord(ciphertext[i]) - shift
+                    new_letter = chr(new_number)
+                    plaintext += str(new_letter)
         else:
             plaintext += str(ciphertext[i])
     return plaintext
