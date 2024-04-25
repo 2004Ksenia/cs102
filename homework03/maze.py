@@ -18,8 +18,28 @@ def remove_wall(
     :param coord:
     :return:
     """
+    # 1. выбрать любую клетку
+    # 2. выбрать направление: наверх или направо.
+    # Если в выбранном направлении следующая клетка лежит за границами поля,
+    # выбрать второе возможное направление
+    # 3. перейти в следующую клетку, сносим между клетками стену
+    # 4. повторять 2-3 до тех пор, пока не будут пройдены все клетки
 
-    pass
+    for y,x in coord:
+        size = len(grid)
+        if y==1 and x<(size-2):
+            grid[y][x+1] = " "
+        if y > 1 and x < (size - 3):
+            rr = randint (0,1)
+            #print (rr)
+            if rr ==0:
+                grid[y][x + 1] = " "
+            else:
+                grid[y-1][x] = " "
+        if y > 1 and x == (size-2):
+            grid[y-1][x] = " "
+
+    return grid
 
 
 def bin_tree_maze(
@@ -41,12 +61,9 @@ def bin_tree_maze(
                 grid[x][y] = " "
                 empty_cells.append((x, y))
 
-    # 1. выбрать любую клетку
-    # 2. выбрать направление: наверх или направо.
-    # Если в выбранном направлении следующая клетка лежит за границами поля,
-    # выбрать второе возможное направление
-    # 3. перейти в следующую клетку, сносим между клетками стену
-    # 4. повторять 2-3 до тех пор, пока не будут пройдены все клетки
+#вызов функции сноса стен
+    grid = remove_wall(grid,empty_cells)
+
 
     # генерация входа и выхода
     if random_exit:
@@ -69,7 +86,15 @@ def get_exits(grid: List[List[Union[str, int]]]) -> List[Tuple[int, int]]:
     :return:
     """
 
-    pass
+    exit_coords = [] #координаты входа/выхода
+    for x, row in enumerate(grid):
+        for y, _ in enumerate(row):
+            if grid[x][y] == "X" or grid[x][y] == "1":
+                exit_coords.append((x, y))
+                #print (exit_coords)
+
+
+    return exit_coords
 
 
 def make_step(grid: List[List[Union[str, int]]], k: int) -> List[List[Union[str, int]]]:
@@ -80,9 +105,25 @@ def make_step(grid: List[List[Union[str, int]]], k: int) -> List[List[Union[str,
     :return:
     """
 
-    pass
 
+    row = len(grid)
 
+    exit_coords = get_exits(grid)
+    print (exit_coords)
+    print(row)
+    x,y = exit_coords[0]
+    if x == 0 and y >= 1:
+        print('left',x,y)
+    if y == 0 and x >= 1:
+        print(x,y)
+    if y == (row-1):
+        print(x, y)
+    if x == (row-1):
+        print(x, y)
+
+    return grid
+
+#TTTttt
 def shortest_path(
     grid: List[List[Union[str, int]]], exit_coord: Tuple[int, int]
 ) -> Optional[Union[Tuple[int, int], List[Tuple[int, int]]]]:
@@ -114,8 +155,25 @@ def solve_maze(
     :param grid:
     :return:
     """
+# проверка если вход совпадает с выходом
+    exit_coords = get_exits(grid)
+    #print (len(exit_coords))
+    if len(exit_coords) == 1: # если вход совпадает с выходом
+        return grid, exit_coords
 
-    pass
+    y,x = exit_coords[0] # для первой координаты ставим 1
+    grid[y][x] = "1"
+
+# Заполняем нулями
+    for x, row in enumerate(grid):
+        for y, _ in enumerate(row):
+            if grid[x][y] == " " or grid[x][y] == "X":
+                grid[x][y] = 0
+
+    k = 2
+    grid = make_step(grid,k)
+
+    return grid
 
 
 def add_path_to_grid(
@@ -137,9 +195,16 @@ def add_path_to_grid(
 
 
 if __name__ == "__main__":
-    print(pd.DataFrame(bin_tree_maze(15, 15)))
+    #print(pd.DataFrame(bin_tree_maze(15, 15)))
     GRID = bin_tree_maze(15, 15)
-    print(pd.DataFrame(GRID))
-    _, PATH = solve_maze(GRID)
-    MAZE = add_path_to_grid(GRID, PATH)
-    print(pd.DataFrame(MAZE))
+    #print(pd.DataFrame(GRID))
+    FF = get_exits(GRID)
+    print (FF)
+    GREED2 = solve_maze(GRID)
+
+    print(pd.DataFrame(GREED2))
+
+
+    #_, PATH = solve_maze(GRID)
+   # MAZE = add_path_to_grid(GRID, PATH)
+   # print(pd.DataFrame(MAZE))
